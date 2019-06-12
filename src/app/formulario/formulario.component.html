@@ -1,0 +1,97 @@
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 card mt-4 shadow">
+      <div class="card-title text-center mt-4">
+        <div class="h4">Agregar usuario</div>
+      </div>
+      <form  (ngSubmit)=" agregar(form) " #form="ngForm">
+
+      <div class="card-body">
+          <div class="form-row">
+            <div class="col-12">
+                <label for="Nombre">Nombre</label>
+                <input type="text"name="Nombre" [(ngModel)]="Nombre" required minlength="2" maxlength="20" class="form-control">
+            </div>
+            <div class="col-12">
+                <label for="Apellido">Apellido</label>
+                <input type="text" name="Apellido" [(ngModel)]="Apellido" required minlength="2" maxlength="20" class="form-control">
+            </div>
+            <div class="col-12">
+                <label for="Correo">Correo</label>
+                <input type="text" name="Correo" [ngClass]="{'is-invalid': form.submitted && Correo.invalid}" minlength="6"  [(ngModel)]="Correo" email required  class="form-control">
+            </div>
+            <div class="col-12">
+                <label for="password">Contraseña</label>
+                <input type="password" name="password" [(ngModel)]="password" minlength="5" maxlength="20" password required class="form-control">
+            </div>
+          </div>
+          <hr class="my-3">
+        <button type="submit" [disabled]="!form.form.valid"   class="btn btn-block btn-primary">Agregar</button>
+      </div>
+    </form>
+
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-8 col-xl-8 mt-4">
+      <div class="row">
+        <div *ngFor="let usuario of Usuarios" class="col-xs-11 col-sm-11 col-md-11 col-lg-6 col-xl-5 m-1 card shadow-sm">
+
+            <div class="card-body">
+              <p class="lead"><b>Nombre:</b> {{ usuario.Nombre }}</p>
+              <p class="lead"><b>Apellido:</b> {{ usuario.Apellido }}</p>
+              <p class="lead"><b>Correo:</b> {{ usuario.Correo }}</p>
+              <p class="lead"><b>Hecho:</b> {{ usuario.updated_at | date}}</p>
+              <hr class="my-4">
+              <div class="text-center">
+                <div class="lead"><b>Acciones</b></div>
+                <button class="btn" type="button" (click)="eliminar(this.usuario.id)"> <i class="fa fa-trash" aria-hidden="true"></i> </button>
+                <button class="btn" type="button" data-toggle="modal" data-target="#modalactual" (click)=" obtener(this.usuario.id,this.usuario.Nombre,this.usuario.Apellido,this.usuario.Correo,this.usuario.password) " ><i class="fa fa-pencil" aria-hidden="true"></i> </button>
+
+            </div>
+          </div>
+
+        </div>
+          <div id="modalactual" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div *ngIf="Actual" class="modal-body">
+                  <form (ngSubmit)="Actualizar()"  #form2="ngForm">
+                      <div class="form-group">
+                          <label for="NombreA">id: {{ Actual.id }}</label>
+                          <small id="helpId" class="form-text text-info text-muted">El id se asigna automáticamente</small>
+                        </div>
+                    <div class="form-group">
+                      <label for="NombreA">Nombre</label>
+                      <input type="text"
+                        class="form-control" name="NombreA" required minlength="2" maxlength="20" value="{{ Actual.Nombre }}" [(ngModel)]="NombreA"  placeholder="">
+                      <small  class="form-text text-muted">Nombre Actual: {{ Actual.Nombre }}</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="ApellidoA">Apellido</label>
+                        <input type="text"
+                          class="form-control" name="ApellidoA" required minlength="2" maxlength="20" id="" [(ngModel)]="ApellidoA"  value="{{ Actual.Apellido }}" placeholder="">
+                        <small  class="form-text text-muted">Apellido Actual: {{ Actual.Apellido }}</small>
+                      </div>
+                    <div class="form-group">
+                        <label for="CorreoA">Correo</label>
+                        <input type="text"
+                          class="form-control" name="Correo"  id="" [ngClass]="{'is-invalid': form.submitted && Correo.invalid}" minlength="6"  [(ngModel)]="CorreoA" value="{{ Actual.Correo }}" placeholder="">
+                        <small  class="form-text text-muted">Correo Actual: {{ Actual.Correo }}</small>
+                      </div>
+                    <div class="form-group">
+                        <label for="PasswordA">Password</label>
+                        <small  class="form-text text-muted">Contacte con su proveedor para más información</small>
+                      </div>
+                    <div class="form-group">
+                      <button type="submit"  onclick="$('.modal').modal('hide')"  class="btn btn-block btn-dark">Actualizar</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+<div class="table-responsive">
+<table class="table table-sm table-striped shadow  text-center">
+  <thead class=" table-dark">
+    <tr>
+      <th>Id</th>
+      <th>Nombre</th>
+      <th>Apellido</th>
+      <th>Correo</th>
+      <th>Contraseña</th>
+      <th>Creado el</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let usuario of usuarios">
+      <td>{{ usuario.id }}</td>
+      <td>{{ usuario.Nombre }}</td>
+      <td>{{ usuario.Apellido }}</td>
+      <td>{{ usuario.Correo }}</td>
+      <td>{{ usuario.password }}</td>
+      <td>{{ usuario.updated_at | date}}</td>
+    </tr>
+  </tbody>
+</table>
+</div>

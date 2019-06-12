@@ -1,0 +1,27 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <a class="navbar-brand text-white">Práctica 3</a>
+  <button class="navbar-toggler" data-target="#my-nav" data-toggle="collapse" aria-controls="my-nav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div id="my-nav" class="collapse navbar-collapse">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item ">
+        <a class="nav-link" [routerLink]="['/']" routerLinkActive="router-link-active" >Principal </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/admin']" routerLinkActive="router-link-active"  tabindex="-1" aria-disabled="true">Agregar</a>
+      </li>
+      <li class="nav-item" *ngIf="valor===undefined; else lisalida" >
+        <a class="nav-link" [routerLink]="['/login']" routerLinkActive="router-link-active"  tabindex="-1" aria-disabled="true">Login</a>
+      </li>
+      <ng-template #lisalida>
+        <li class="nav-item">
+          <a class="nav-link" (click)="salir()" routerLinkActive="router-link-active"  tabindex="-1" aria-disabled="true">Salir</a>
+        </li>
+      </ng-template>
+
+    </ul>
+
+  </div>
+</nav>
+

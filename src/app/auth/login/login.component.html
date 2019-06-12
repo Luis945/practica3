@@ -1,0 +1,20 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-0 col-sm-0 col-md-3 col-lg-4 col-xl-4"></div>
+    <div class="col card mt-5">
+      <form (ngSubmit)="ingresar(form)" #form="ngForm">
+          <div class="form-group">
+            <label for="Correo">Correo</label>
+            <input type="text" name="Correo" [(ngModel)]="Correo" class="form-control">
+            <label for="password">Contraseña</label>
+            <input type="password" name="password" [(ngModel)]="Contra" class="form-control">
+          </div>
+          <div class="form-group">
+            <hr class="my-4">
+            <button type="submit" class="btn btn-block btn-primary">Iniciar</button>
+          </div>
+      </form>
+    </div>
+    <div class="col-xs-0 col-sm-0 col-md-3 col-lg-4 col-xl-4"></div>
+  </div>
+</div>
